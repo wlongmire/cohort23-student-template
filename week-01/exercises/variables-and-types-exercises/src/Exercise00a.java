@@ -5,5 +5,7 @@ public class Exercise00a {
         /* 2. Add a multi-line comment below.
         Hint: this instruction is a multi-line comment.
          */
+
+        ///This is some new text.
     }
 }
