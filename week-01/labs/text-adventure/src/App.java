@@ -4,45 +4,51 @@ public class App {
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
         String input;
+        int roomsVisited = 0;
         boolean isRunning = true;
         String location = "courtyard";
 
         // Show Greeting
-        System.out.println("Welcome to Adventure");
+        System.out.println("Welcome to Adventure.");
+        System.out.println("-".repeat(30));
 
         while(isRunning) {
             // Display current location
             System.out.printf("You are currently in the %s.%n", location);
+            System.out.printf("You have traveled through %d rooms.%n", roomsVisited);
 
             // Display options for next location
+            System.out.println("-".repeat(30));
+            System.out.println("Here are your options:");
             switch(location) {
                 case("courtyard"):
-                    System.out.println("You see a path north of you...");
+                    System.out.println("\tNorth of you there is a path.");
                     break;
                 case("doorway"):
-                    System.out.println("North of you is a stately livingroom");
-                    System.out.println("To the west lies a evil looking garage...");
-                    System.out.println("Behind you, the courtyard waits...");
+                    System.out.println("\tNorth of you is a stately livingroom");
+                    System.out.println("\tWest lies a evil looking garage...");
+                    System.out.println("\tSouth, the courtyard waits...");
                     break;
                 case("garage"):
-                    System.out.println("South of you is that lovely doorway");
-                    System.out.println("But what in that firely looking hole to the north?");
+                    System.out.println("\tSouth of you is that lovely doorway");
+                    System.out.println("\tNorth of you, there is some in that firely looking hole?");
                 default:
                     System.out.println("You are confused and don't know where to go.");
             }
 
             // Get new user direction
-            System.out.println("Where do you want to go?");
+
+            System.out.print("\nWhere do you want to go: ");
             input = console.nextLine();
 
             //find next user location
-            switch(location) {
-                case("courtyard"):
-                    if (input.equalsIgnoreCase("north")){
+            switch (location) {
+                case ("courtyard"):
+                    if (input.equalsIgnoreCase("north")) {
                         location = "doorway";
                     }
                     break;
-                case("doorway"):
+                case ("doorway"):
                     if (input.equalsIgnoreCase("north")) {
                         location = "livingroom";
                     } else if (input.equalsIgnoreCase("west")) {
@@ -51,7 +57,7 @@ public class App {
                         location = "courtyard";
                     }
                     break;
-                case("garage"):
+                case ("garage"):
                     if (input.equalsIgnoreCase("north")) {
                         //User losses
                         System.out.println("You stumbled, somehow, into hades....");
@@ -60,7 +66,10 @@ public class App {
                         location = "doorway";
                     }
             }
+
+            roomsVisited ++;
         }
+
 
         // Show Parting Words
         System.out.println("Want to play again.");
