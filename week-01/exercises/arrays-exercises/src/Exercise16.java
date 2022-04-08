@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 
 public class Exercise16 {
@@ -6,6 +7,40 @@ public class Exercise16 {
         // MERGE
         int[] one = makeRandomAscendingArray();
         int[] two = makeRandomAscendingArray();
+        int[] result = new int[one.length + two.length];
+
+        //loop through 0 - result.length
+        //  see if one[currentOne] < two[currentTwo]
+        //      add one[currentOne] to result[currentResult]
+        //      currentOne ++;
+        //  else
+        //      add two[currentTwo] to result[currentResult]
+        //      currentTwo ++;
+        //  currentResult ++
+        //print results
+
+        int currentOne = 0;
+        int currentTwo = 0;
+
+        for(int currentResult=0; currentResult < result.length; currentResult++) {
+            if (currentOne == one.length) {
+                result[currentResult] = two[currentTwo];
+                currentTwo ++;
+            } else if (currentTwo == two.length) {
+                result[currentResult] = one[currentOne];
+                currentOne ++;
+            } else if (one[currentOne] < two[currentTwo]) {
+                result[currentResult] = one[currentOne];
+                currentOne ++;
+            } else {
+                result[currentResult] = two[currentTwo];
+                currentTwo ++;
+            }
+        }
+
+        printArray(result);
+//        printArray(one);
+//        printArray(two);
 
         // makeRandomAscendingArray creates a random array with a capacity between 50 and 150.
         // Its elements are guaranteed to be sorted ascending.
@@ -22,6 +57,11 @@ public class Exercise16 {
            if twoIndex >= two.length, there are no `two` elements remaining so use elements from one
           */
     }
+
+    public static void printArray(int[] arr) {
+        System.out.println(Arrays.toString(arr));
+    }
+
 
     public static int[] makeRandomAscendingArray() {
         Random random = new Random();
